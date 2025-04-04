@@ -1,5 +1,6 @@
 import json
 import pickle
+import os
 from flask import Flask,request,jsonify,render_template
 from src.helper import predict_class,get_response
 import nltk
@@ -32,5 +33,6 @@ def chatbot_response():
     response = get_response(intent,intents)
     return jsonify({"response":response})
 
-if __name__=="__main__":
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000)) 
+    app.run(host="0.0.0.0", port=port)
