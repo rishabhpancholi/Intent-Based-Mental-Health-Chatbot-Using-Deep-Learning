@@ -2,6 +2,10 @@ import json
 import pickle
 from flask import Flask,request,jsonify,render_template
 from src.helper import predict_class,get_response
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
 
 
 app = Flask(__name__)
