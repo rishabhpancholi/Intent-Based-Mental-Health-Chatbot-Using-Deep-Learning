@@ -3,6 +3,7 @@ import re
 import random
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+import nltk
 
 nltk.data.path.append("/opt/render/nltk_data")
 
