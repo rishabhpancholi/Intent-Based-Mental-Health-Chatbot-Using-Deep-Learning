@@ -1,0 +1,132 @@
+body {
+    background-color: rgb(0, 221, 255);
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 600;
+}
+
+.chat-box {
+    width: 30%;
+    background: rgb(74, 176, 210);
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    position: fixed;
+    bottom: 5vh;
+    left: 500px;
+    padding-top: 25px;
+    padding-inline: 20px;
+}
+
+.chat-container {
+    gap: 40px;
+    height: 60vh;
+    overflow-y: auto;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+}
+
+.chat-container::-webkit-scrollbar {
+    display: none;
+}
+
+.bot-message {
+    color: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    background: #1a035b;
+    border-radius: 5px;
+    width: fit-content;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.input_group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: sticky;
+    bottom: 0;
+    background: rgb(74, 176, 210);
+    padding: 10px;
+}
+
+.form-control {
+    margin: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.custom-btn {
+    background-color: blue !important;
+    margin-left: 20px;
+    color: white;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .chat-box {
+        width: 90%;
+        left: 5%;
+        bottom: 2vh;
+        height: auto;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+    .chat-container {
+        height: 55vh;
+        padding: 10px;
+        gap: 20px;
+    }
+
+    .input_group {
+        flex-direction: row;
+        gap: 10px;
+        padding: 10px 5px;
+    }
+
+    .form-control {
+        font-size: 0.9rem;
+    }
+
+    .custom-btn {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .bot-message {
+        font-size: 0.9rem;
+    }
+
+    .chat-box {
+        padding: 10px 8px;
+    }
+
+    .input_group {
+        gap: 5px;
+    }
+}
