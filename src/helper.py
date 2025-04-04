@@ -1,10 +1,8 @@
 import numpy as np
 import re
 import random
-import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-nltk.download('stopwords')
 
 stop_words = set(stopwords.words('english'))
 lemmatizer = WordNetLemmatizer()
