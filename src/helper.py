@@ -23,7 +23,7 @@ def predict_class(user_input,words,classes,model):
 
     
     prediction = model.predict(np.array([bag]))[0]
-    ERROR_THRESHOLD = 0.25
+    ERROR_THRESHOLD = 0.70
     intents_probabilities = [[intent,probability] for intent,probability in enumerate(prediction) if probability>ERROR_THRESHOLD]
     intents_probabilities.sort(key = lambda x:x[1], reverse=True)
 
