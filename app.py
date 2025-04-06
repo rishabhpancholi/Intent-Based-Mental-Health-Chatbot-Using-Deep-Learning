@@ -5,16 +5,19 @@ from flask import Flask,request,jsonify,render_template
 from src.helper import predict_class,get_response
 import nltk
 
+nltk_data_path = os.path.join(os.getcwd(), 'nltk_data')
 
-nltk.download('stopwords', download_dir='/opt/render/project/nltk_data')
-nltk.download('punkt', download_dir='/opt/render/project/nltk_data')
-nltk.download('wordnet', download_dir='/opt/render/project/nltk_data')
+if not os.path.exists(nltk_data_path):
+    os.makedirs(nltk_data_path)
 
-nltk.data.path.append("/opt/render/nltk_data")
+nltk.data.path.append(nltk_data_path)
 
-from nltk.corpus import stopwords
-
-stop_words = set(stopwords.words('english'))
+try:
+    stop_words = set(nltk.corpus.stopwords.words('english'))
+except LookupError:
+    # Download stopwords if not found
+    nltk.download('stopwords', download_dir=nltk_data_path)
+    stop_words = set(nltk.corpus.stopwords.words('english'))
 
 app = Flask(__name__)
 

@@ -4,7 +4,6 @@ import random
 from nltk.stem import WordNetLemmatizer
 import nltk
 
-nltk.data.path.append("/opt/render/nltk_data")
 lemmatizer = WordNetLemmatizer()
 
 
