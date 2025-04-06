@@ -1,10 +1,10 @@
 import numpy as np
 import re
 import random
-# from nltk.stem import WordNetLemmatizer
+from nltk.stem import WordNetLemmatizer
 
 
-# lemmatizer = WordNetLemmatizer()
+lemmatizer = WordNetLemmatizer()
 
 
 def predict_class(user_input,words,classes,model,stop_words):
@@ -12,7 +12,7 @@ def predict_class(user_input,words,classes,model,stop_words):
 
     input_words = user_input.lower().split()
     user_input = re.sub(r'[^a-zA-Z0-9\s]', '', user_input)
-    input_words = [word for word in input_words if word not in stop_words]
+    input_words = [lemmatizer.lemmatize(word) for word in input_words if word not in stop_words]
 
     for word in words:
         bag.append(1) if word in input_words else bag.append(0)
