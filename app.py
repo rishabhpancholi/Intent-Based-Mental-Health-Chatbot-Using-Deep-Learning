@@ -3,7 +3,11 @@ import pickle
 import os
 from flask import Flask,request,jsonify,render_template
 from src.helper import predict_class,get_response
+import nltk
+from nltk.corpus import stopwords
 
+nltk.data.path.append("/opt/render/nltk_data")
+stop_words = set(stopwords.words('english'))
 
 app = Flask(__name__)
 
@@ -25,7 +29,7 @@ def index():
 @app.route('/chat',methods = ['POST'])
 def chatbot_response():
     user_input = request.json.get('message')
-    intent = predict_class(user_input,words,classes,model)
+    intent = predict_class(user_input,words,classes,model,stop_words)
     response = get_response(intent,intents)
     return jsonify({"response":response})
 

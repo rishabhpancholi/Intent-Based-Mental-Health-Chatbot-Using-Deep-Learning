@@ -1,17 +1,14 @@
 import numpy as np
 import re
 import random
-from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import nltk
 
 nltk.data.path.append("/opt/render/nltk_data")
-
-stop_words = set(stopwords.words('english'))
 lemmatizer = WordNetLemmatizer()
 
 
-def predict_class(user_input,words,classes,model):
+def predict_class(user_input,words,classes,model,stop_words):
     bag = []
 
     input_words = user_input.lower().split()
@@ -23,7 +20,7 @@ def predict_class(user_input,words,classes,model):
 
     
     prediction = model.predict(np.array([bag]))[0]
-    ERROR_THRESHOLD = 0.70
+    ERROR_THRESHOLD = 0.25
     intents_probabilities = [[intent,probability] for intent,probability in enumerate(prediction) if probability>ERROR_THRESHOLD]
     intents_probabilities.sort(key = lambda x:x[1], reverse=True)
 

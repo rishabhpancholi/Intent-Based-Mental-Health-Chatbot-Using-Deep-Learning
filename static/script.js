@@ -23,7 +23,7 @@ function sendMessage(){
     })
     .then(response => response.json())
     .then(data=>{
-        let botMessage = `<div class="bot-message p-2">${data.response}</div>`; 
+        let botMessage = `<div class="bot-message p-2">${data.response}</div>`;
         // chatContainer.innerHTML += botMessage;
         chatContainer.insertAdjacentHTML("beforeend", botMessage);
 
