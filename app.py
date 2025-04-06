@@ -4,13 +4,16 @@ import os
 from flask import Flask,request,jsonify,render_template
 from src.helper import predict_class,get_response
 import nltk
-from nltk.corpus import stopwords
+
 
 nltk.download('stopwords', download_dir='/opt/render/project/nltk_data')
 nltk.download('punkt', download_dir='/opt/render/project/nltk_data')
 nltk.download('wordnet', download_dir='/opt/render/project/nltk_data')
 
 nltk.data.path.append("/opt/render/nltk_data")
+
+from nltk.corpus import stopwords
+
 stop_words = set(stopwords.words('english'))
 
 app = Flask(__name__)
