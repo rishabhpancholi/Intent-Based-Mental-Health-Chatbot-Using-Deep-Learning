@@ -19,6 +19,11 @@ except LookupError:
     nltk.download('stopwords', download_dir=nltk_data_path)
     stop_words = set(nltk.corpus.stopwords.words('english'))
 
+try:
+    nltk.corpus.wordnet
+except LookupError:
+    nltk.download('wordnet', download_dir=nltk_data_path)
+
 app = Flask(__name__)
 
 with open("artifacts/mental_health_chatbot.pkl", "rb") as file:
