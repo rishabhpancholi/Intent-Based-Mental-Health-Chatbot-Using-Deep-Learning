@@ -1,4 +1,8 @@
-build:
-  commands:
-    - mkdir -p /opt/render/nltk_data
-    - python -m nltk.downloader -d /opt/render/nltk_data stopwords punkt wordnet
+services:
+  - type: web
+    name: mental-health-chatbot
+    env: python
+    buildCommand: |
+      mkdir -p /opt/render/nltk_data
+      python -m nltk.downloader -d /opt/render/nltk_data stopwords punkt wordnet
+    startCommand: gunicorn app:app
