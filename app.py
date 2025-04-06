@@ -1,11 +1,18 @@
 import json
 import pickle
 import os
+import logging
 from flask import Flask,request,jsonify,render_template
 from src.helper import predict_class,get_response
 import nltk
 
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+script_directory = os.path.dirname(os.path.abspath(__file__))
 nltk_data_path = os.path.join(os.getcwd(), 'nltk_data','corpora')
+
+logger.debug(f"nltk_data_path: {nltk_data_path}")
 
 if not os.path.exists(nltk_data_path):
     os.makedirs(nltk_data_path)
@@ -19,7 +26,7 @@ except LookupError:
     stop_words = set(nltk.corpus.stopwords.words('english'))
 
 try:
-    nltk.corpus.wordnet
+    from nltk.corpus import wordnet
 except LookupError:
     nltk.download('wordnet', download_dir=nltk_data_path)
 

@@ -2,7 +2,7 @@ import numpy as np
 import re
 import random
 from nltk.stem import WordNetLemmatizer
-import nltk
+
 
 lemmatizer = WordNetLemmatizer()
 
