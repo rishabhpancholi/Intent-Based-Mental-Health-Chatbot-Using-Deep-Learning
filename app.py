@@ -1,52 +1,68 @@
 import json
 import pickle
 import os
-from flask import Flask,request,jsonify,render_template
-from src.helper import predict_class,get_response
+from flask import Flask, request, jsonify, render_template
+
+# Importing helper functions for intent prediction and response generation
+from src.helper import predict_class, get_response
+
+# Download necessary NLTK resources
 import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
 
-nltk_data_path = os.path.join(os.getcwd(), 'nltk_data','corpora')
+# Load English stopwords
+from nltk.corpus import stopwords
+stop_words = set(stopwords.words('english'))
 
-if not os.path.exists(nltk_data_path):
-    os.makedirs(nltk_data_path)
-
-nltk.data.path.append(nltk_data_path)
-
-try:
-    stop_words = set(nltk.corpus.stopwords.words('english'))
-except LookupError:
-    nltk.download('stopwords', download_dir=nltk_data_path)
-    stop_words = set(nltk.corpus.stopwords.words('english'))
-
-try:
-    from nltk.corpus import wordnet
-except LookupError:
-    nltk.download('wordnet.zip', download_dir=nltk_data_path)
-
+# Initialize Flask app
 app = Flask(__name__)
 
+# Load the trained chatbot model
 with open("artifacts/mental_health_chatbot.pkl", "rb") as file:
     model = pickle.load(file)
+
+# Load intents (questions & responses) from JSON
 with open("artifacts/intents.json", encoding="utf-8") as file:
     intents = json.load(file)
+
+# Load the vocabulary (tokenized words)
 with open("artifacts/words.pkl", "rb") as file:
     words = pickle.load(file)
+
+# Load the intent classes
 with open("artifacts/classes.pkl", "rb") as file:
     classes = pickle.load(file)
 
-
-
+# Home route - renders the main HTML page
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/chat',methods = ['POST'])
+# Chat route - receives user input and returns a chatbot response
+@app.route('/chat', methods=['POST'])
 def chatbot_response():
-    user_input = request.json.get('message')
-    intent = predict_class(user_input,words,classes,model,stop_words)
-    response = get_response(intent,intents)
-    return jsonify({"response":response})
+    # Get JSON data from the request
+    data = request.get_json(force=True, silent=True)
 
+    # Handle bad input gracefully
+    if not data or 'message' not in data:
+        return jsonify({"error": "Invalid input. 'message' key missing."}), 400
+
+    # Extract user message
+    user_input = data['message']
+
+    # Predict the intent using the helper function
+    intent = predict_class(user_input, words, classes, model, stop_words)
+
+    # Get a response based on the predicted intent
+    response = get_response(intent, intents)
+
+    # Return the response in JSON format
+    return jsonify({"response": response})
+
+# Run the app
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000)) 
-    app.run(host="0.0.0.0", port=port)
+    app.run(debug=True)
+

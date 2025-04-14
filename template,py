@@ -2,36 +2,39 @@ import os
 from pathlib import Path
 import logging
 
-logging.basicConfig(level = logging.INFO,format='[%(asctime)s]:%(message)s')
+# Set up logging format and level
+logging.basicConfig(level=logging.INFO, format='[%(asctime)s]:%(message)s')
 
-list_of_files= [
-    "src/__init__.py",
-    "src/helper.py",
-    "setup.py",
-    "app.py",
-    "requirements.txt",
-    "research/train.ipynb"
-    "templates/index.html",
-    "static/style.css",
-    "static/script.js"
+# List of files and folders to be created for the project
+list_of_files = [
+    "src/__init__.py",          # Package initializer for src
+    "src/helper.py",            # Helper functions (e.g., NLP logic)
+    "setup.py",                 # Setup configuration (if packaging)
+    "app.py",                   # Main Flask app
+    "requirements.txt",         # List of Python dependencies
+    "research/train.ipynb",     # Jupyter Notebook for training
+    "templates/index.html",     # HTML template for the frontend
+    "static/style.css",         # CSS styles
+    "static/script.js"          # Optional JavaScript for interactivity
 ]
 
+# Loop through each file in the list
 for file in list_of_files:
-  
-  filepath = Path(file)
-  filedir,filename = os.path.split(filepath)
+    filepath = Path(file)  # Convert to Path object
+    filedir, filename = os.path.split(filepath)  # Split into directory and filename
 
-  if filedir:
-    os.makedirs(filedir,exist_ok=True)
-    logging.info(f"Creating Directory; {filedir} for the file: {filename}")
+    # Create the directory if it doesn't exist
+    if filedir:
+        os.makedirs(filedir, exist_ok=True)
+        logging.info(f"Creating Directory: {filedir} for the file: {filename}")
 
-  if not filepath.exists() or filepath.stat().st_size==0:
-    with open(file,"w") as f:
-      pass
-    logging.info(f"Creating empty file:{filename}")
+    # Create the file if it doesn't exist or is empty
+    if not filepath.exists() or filepath.stat().st_size == 0:
+        with open(file, "w") as f:
+            pass  # Just create an empty file
+        logging.info(f"Creating empty file: {filename}")
+    else:
+        logging.info(f"Filename {filename} already exists")
 
-  else:
-    logging.info(f"Filename {filename} already exists")
-  
 
     
