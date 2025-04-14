@@ -11,7 +11,7 @@
 - 🤖 **Intent Detection with Deep Learning** – Classifies user messages into predefined emotional or mental health categories.
 - 💬 **Natural Conversations** – Provides helpful and comforting responses based on the user's intent.
 - 📊 **~87% Test Accuracy** – Achieved using a simple yet effective neural network with Bag of Words text representation.
-- 🧠 **Handles Multiple Mental Health Topics** – Stress, anxiety, motivation, sadness, loneliness, and more.
+- 🧠 **Handles Multiple Mental Health Topics** – Stress, anxiety, motivation, depression, loneliness, and more.
 - 🌐 **Built with Flask** – Lightweight and easily deployable backend.
 - ⚡ **Fast & Responsive UI** – Minimal and clean frontend for ease of use.
 
