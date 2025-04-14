@@ -49,3 +49,12 @@ pip install -r requirements.txt
 # Run the Flask app
 python app.py
 ```
+## 📷 Screenshots
+![image](Chatbot-1.png) 
+![image](Chatbot-2.png)
+
+## 🤝 Contributing
+Feel free to open issues or contribute by submitting pull requests!
+
+---
+🌟 _If you like this project, don't forget to star the repository!_ ⭐
