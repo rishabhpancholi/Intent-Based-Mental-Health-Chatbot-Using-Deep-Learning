@@ -40,14 +40,11 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/Mental-Health-Chatbot.git
-cd Mental-Health-Chatbot
+git clone https://github.com/rishabhpancholi/Intent-Based-Mental-Health-Chatbot-Using-Deep-Learning.git
+cd Intent-Based-Mental-Health-Chatbot-Using-Deep-Learning
 
 # Install dependencies
 pip install -r requirements.txt
-
-# Train the model (if not already trained)
-python train_model.py
 
 # Run the Flask app
 python app.py
