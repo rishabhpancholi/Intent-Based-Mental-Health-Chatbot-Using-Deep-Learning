@@ -50,8 +50,8 @@ pip install -r requirements.txt
 python app.py
 ```
 ## 📷 Screenshots
-![image](Chatbot-1.png) 
-![image](Chatbot-2.png)
+![image](images/Chatbot-1.png) 
+![image](images/Chatbot-2.png)
 
 ## 🤝 Contributing
 Feel free to open issues or contribute by submitting pull requests!
